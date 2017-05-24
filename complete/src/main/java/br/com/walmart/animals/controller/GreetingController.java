@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.walmart.animals.exceptions.ResourceBadGatewayException;
 import br.com.walmart.animals.exceptions.ResourceNotFoundException;
 import br.com.walmart.animals.model.Animal;
-import br.com.walmart.animals.model.AnimalRepository;
 import br.com.walmart.animals.model.Greeting;
 import br.com.walmart.animals.model.Passaro;
+import br.com.walmart.animals.repository.AnimalRepository;
 
 
 @RestController
