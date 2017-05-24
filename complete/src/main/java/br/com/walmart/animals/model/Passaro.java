@@ -1,4 +1,4 @@
-package hello;
+package br.com.walmart.animals.model;
 
 public class Passaro extends Animal {
 	

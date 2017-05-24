@@ -1,4 +1,4 @@
-package hello;
+package br.com.walmart.animals.controller;
 import java.net.URISyntaxException;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import exceptions.ResourceBadGatewayException;
-import exceptions.ResourceNotFoundException;
+import br.com.walmart.animals.exceptions.ResourceBadGatewayException;
+import br.com.walmart.animals.exceptions.ResourceNotFoundException;
+import br.com.walmart.animals.model.Animal;
+import br.com.walmart.animals.model.AnimalRepository;
+import br.com.walmart.animals.model.Greeting;
+import br.com.walmart.animals.model.Passaro;
 
 
 @RestController

@@ -1,4 +1,4 @@
-package hello;
+package br.com.walmart.animals.model;
 
 import java.io.Serializable;
 import java.util.UUID;

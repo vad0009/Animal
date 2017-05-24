@@ -1,4 +1,4 @@
-package hello;
+package br.com.walmart.animals.model;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
