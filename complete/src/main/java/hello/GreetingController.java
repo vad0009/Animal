@@ -21,7 +21,7 @@ import exceptions.ResourceNotFoundException;
 
 @RestController
 public class GreetingController {
-	final static Logger logger = Logger.getLogger(Application.class);
+	final static Logger LOGGER = Logger.getLogger(GreetingController.class);
 	
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
@@ -32,7 +32,7 @@ public class GreetingController {
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
     	
-    	System.out.println(logger.getName());
+    	System.out.println(LOGGER.getName());
         return new Greeting(counter.incrementAndGet(),String.format(template, name));
     }
     
@@ -45,10 +45,10 @@ public class GreetingController {
     	
     	Animal animal = animalRepository.findOne(id);
     	if(animal == null){
-    		logger.error("Erro: NotFoundException, favor informar um ID valido");
+    		LOGGER.error("Erro: NotFoundException, favor informar um ID valido");
     		throw new ResourceNotFoundException(id);
     	}
-    		logger.info("Animal encontrado --> " + animal.getName());
+    		LOGGER.info("Animal encontrado --> " + animal.getName());
     		return animal;
     		
     }
@@ -57,10 +57,10 @@ public class GreetingController {
     public Animal postAnimal(@Valid @RequestBody Passaro passaro) throws URISyntaxException {
     	
     	try {
-    		logger.info("Animal cadastrado! \n ID: " + passaro.getId() + "\n Nome: " + passaro.getName() + "\n Especie: " + passaro.getSpecies() + "\n Habitat: "+passaro.getHabitat());
+    		LOGGER.info("Animal cadastrado! \n ID: " + passaro.getId() + "\n Nome: " + passaro.getName() + "\n Especie: " + passaro.getSpecies() + "\n Habitat: "+passaro.getHabitat());
     		return animalRepository.save(passaro);
     	}catch (Exception e) {
-    		logger.error("Erro: BadGatewayException, Banco de dados não conectado");
+    		LOGGER.error("Erro: BadGatewayException, Banco de dados não conectado");
     		throw new ResourceBadGatewayException();
     	}
     }
@@ -73,13 +73,13 @@ public class GreetingController {
     		Animal passaroEncontrado = animalRepository.findOne(id);
 			passaroEncontrado.setHabitat(passaro.getHabitat());
 			passaroEncontrado.setName(passaro.getName());
-			logger.info("Dados atualizado com sucesso!");
+			LOGGER.info("Dados atualizado com sucesso!");
 			return animalRepository.save(passaroEncontrado);
     	}catch(NullPointerException ex){
-    		logger.error("Erro: NotFoundException, favor informar um ID valido");
+    		LOGGER.error("Erro: NotFoundException, favor informar um ID valido");
     		throw new ResourceNotFoundException();
     	}catch(DataAccessException ex){
-    		logger.error("Erro: BadGatewayException, Banco de dados não conectado");
+    		LOGGER.error("Erro: BadGatewayException, Banco de dados não conectado");
     		throw new ResourceBadGatewayException();
     	}
     	
@@ -91,10 +91,10 @@ public class GreetingController {
     	
     	Animal animal = animalRepository.findOne(id);
     	if(animal ==null){
-    		logger.error("Erro: NotFoundException, favor informar um ID valido");
+    		LOGGER.error("Erro: NotFoundException, favor informar um ID valido");
     		throw new ResourceNotFoundException();
     	}else{
-    		logger.info("Animal deletado");
+    		LOGGER.info("Animal deletado");
     		animalRepository.delete(id);
     		return null;
     	}
