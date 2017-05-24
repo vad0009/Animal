@@ -1,4 +1,4 @@
-package br.com.walmart.animals.controller;
+package br.com.walmart.animals.service;
 import java.net.URISyntaxException;
 import java.util.concurrent.atomic.AtomicLong;
 
