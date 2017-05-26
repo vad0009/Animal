@@ -1,4 +1,4 @@
-package br.com.walmart.animals.model;
+package br.com.walmart.animals.service;
 
 
 import org.springframework.boot.SpringApplication;

@@ -1,6 +1,5 @@
 package br.com.walmart.animals.service;
 import java.net.URISyntaxException;
-import java.util.concurrent.atomic.AtomicLong;
 
 import javax.validation.Valid;
 
@@ -12,37 +11,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.walmart.animals.exceptions.ResourceBadGatewayException;
 import br.com.walmart.animals.exceptions.ResourceNotFoundException;
 import br.com.walmart.animals.model.Animal;
-import br.com.walmart.animals.model.Greeting;
 import br.com.walmart.animals.model.Passaro;
-import br.com.walmart.animals.repository.AnimalRepository;
 
 
 @RestController
 public class GreetingController {
 	final static Logger LOGGER = Logger.getLogger(GreetingController.class);
-	
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
+
     @Autowired
     private AnimalRepository animalRepository;
     
    
-    @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
-    	
-    	System.out.println(LOGGER.getName());
-        return new Greeting(counter.incrementAndGet(),String.format(template, name));
-    }
-    
-    
-    
-    
     @RequestMapping(value = "/animal_get/{id}" ,method = RequestMethod.GET)
     public Animal getAnimal(@PathVariable(value = "id",required = true) String id){
     	
