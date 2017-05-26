@@ -19,14 +19,14 @@ public class Animal implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
-	@NotEmpty(message = "Digete o ID do Animal")
+	@NotEmpty(message = "Enter the Animal ID")
 	@JsonIgnore
 	private String id;
 	@NotNull
-	@NotEmpty(message = "Informe o nome do animal no JSON")
+	@NotEmpty(message = "Enter the animal's name in JSON")
 	private String name;
-	@NotNull (message = "Este campo não é NULO")
-	@NotEmpty (message = "Informe o habitat do animal no JSON")
+	@NotNull (message = "This field is not NULL")
+	@NotEmpty (message = "Inform the animal's habitat in JSON")
 	private String habitat;
 	
 	public Animal(){

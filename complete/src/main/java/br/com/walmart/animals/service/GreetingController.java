@@ -34,10 +34,10 @@ public class GreetingController {
     	
     	Animal animal = animalRepository.findOne(id);
     	if(animal == null){
-    		LOGGER.error("Erro: NotFoundException, favor informar um ID valido");
+    		LOGGER.error("Erro: NotFoundException, Please enter a valid ID");
     		throw new ResourceNotFoundException(id);
     	}
-    		LOGGER.info("Animal encontrado --> " + animal.getName());
+    		LOGGER.info("Animal Found --> " + animal.getName());
     		return animal;
     		
     }
@@ -46,10 +46,10 @@ public class GreetingController {
     public Animal postAnimal(@Valid @RequestBody Passaro passaro) throws URISyntaxException {
     	
     	try {
-    		LOGGER.info("Animal cadastrado! \n ID: " + passaro.getId() + "\n Nome: " + passaro.getName() + "\n Especie: " + passaro.getSpecies() + "\n Habitat: "+passaro.getHabitat());
+    		LOGGER.info("Registered animal! \n ID: " + passaro.getId() + "\n Name: " + passaro.getName() + "\n Species: " + passaro.getSpecies() + "\n Habitat: "+passaro.getHabitat());
     		return animalRepository.save(passaro);
     	}catch (Exception e) {
-    		LOGGER.error("Erro: BadGatewayException, Banco de dados não conectado");
+    		LOGGER.error("Erro: BadGatewayException, Database not connected");
     		throw new ResourceBadGatewayException();
     	}
     }
@@ -62,13 +62,13 @@ public class GreetingController {
     		Animal passaroEncontrado = animalRepository.findOne(id);
 			passaroEncontrado.setHabitat(passaro.getHabitat());
 			passaroEncontrado.setName(passaro.getName());
-			LOGGER.info("Dados atualizado com sucesso!");
+			LOGGER.info("Data updated successfully!");
 			return animalRepository.save(passaroEncontrado);
     	}catch(NullPointerException ex){
-    		LOGGER.error("Erro: NotFoundException, favor informar um ID valido");
+    		LOGGER.error("Erro: NotFoundException, Please enter a valid ID");
     		throw new ResourceNotFoundException();
     	}catch(DataAccessException ex){
-    		LOGGER.error("Erro: BadGatewayException, Banco de dados não conectado");
+    		LOGGER.error("Erro: BadGatewayException, Database not connected");
     		throw new ResourceBadGatewayException();
     	}
     	
@@ -80,10 +80,10 @@ public class GreetingController {
     	
     	Animal animal = animalRepository.findOne(id);
     	if(animal ==null){
-    		LOGGER.error("Erro: NotFoundException, favor informar um ID valido");
+    		LOGGER.error("Erro: NotFoundException, Please enter a valid ID");
     		throw new ResourceNotFoundException();
     	}else{
-    		LOGGER.info("Animal deletado");
+    		LOGGER.info("Deleted animal!");
     		animalRepository.delete(id);
     		return null;
     	}

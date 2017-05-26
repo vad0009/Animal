@@ -5,10 +5,10 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Mamifero extends Animal {
-	@NotNull (message = "Este campo não é NULO")
-	@NotEmpty(message = "Informe o habitat do animal no JSON")
+	@NotNull (message = "This field is not NULL")
+	@NotEmpty(message = "Inform the animal's habitat in JSON")
 	private String habitat;
-	@NotNull (message = "Este campo não é NULO")
+	@NotNull (message = "This field is not NULL")
 	private String species = "Mamifero";
 	private static final long serialVersionUID = 1L;
 	

@@ -3,7 +3,7 @@ package br.com.walmart.animals.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value = HttpStatus.BAD_GATEWAY, reason="Banco de dados não conectado")
+@ResponseStatus(value = HttpStatus.BAD_GATEWAY, reason="Database not connected")
 public class ResourceBadGatewayException extends RuntimeException {
 	
 	
