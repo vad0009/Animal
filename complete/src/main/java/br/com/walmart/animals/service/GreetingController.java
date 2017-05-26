@@ -26,6 +26,7 @@ public class GreetingController {
     @Autowired
     private AnimalRepository animalRepository;
     
+    
    
     @RequestMapping(value = "/animal_get/{id}" ,method = RequestMethod.GET)
     public Animal getAnimal(@PathVariable(value = "id",required = true) String id){
