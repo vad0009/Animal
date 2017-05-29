@@ -17,6 +17,7 @@ import br.com.walmart.animals.exceptions.ResourceBadGatewayException;
 import br.com.walmart.animals.exceptions.ResourceNotFoundException;
 import br.com.walmart.animals.model.Animal;
 import br.com.walmart.animals.model.Passaro;
+import br.com.walmart.animals.repository.AnimalRepository;
 
 
 @RestController
@@ -29,7 +30,7 @@ public class GreetingController {
     
    
     @RequestMapping(value = "/animal_get/{id}" ,method = RequestMethod.GET)
-    public Animal getAnimal(@PathVariable(value = "id",required = true) String id){
+    public Animal getAnimal(@PathVariable(value = "id",required = true) String id){     
     	
     	
     	Animal animal = animalRepository.findOne(id);
