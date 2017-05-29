@@ -9,7 +9,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.walmart.animals.model.Passaro;
@@ -18,7 +17,6 @@ import junit.framework.TestCase;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=GreetingControllerTests.class)
-@ContextConfiguration
 @AutoConfigureMockMvc
 public class GreetingControllerTests extends TestCase {
 	final static Logger LOGGER = Logger.getLogger(GreetingControllerTests.class);
