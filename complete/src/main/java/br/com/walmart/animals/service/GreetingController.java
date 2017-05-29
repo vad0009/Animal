@@ -20,12 +20,13 @@ import br.com.walmart.animals.model.Passaro;
 import br.com.walmart.animals.repository.AnimalRepository;
 
 
+
 @RestController
 public class GreetingController {
 	final static Logger LOGGER = Logger.getLogger(GreetingController.class);
 
     @Autowired
-    private AnimalRepository animalRepository;
+    public AnimalRepository animalRepository;
     
     
    
@@ -47,7 +48,7 @@ public class GreetingController {
     public Animal postAnimal(@Valid @RequestBody Passaro passaro) throws URISyntaxException {
     	
     	try {
-    		LOGGER.info("Registered animal! \n ID: " + passaro.getId() + "\n Name: " + passaro.getName() + "\n Species: " + passaro.getSpecies() + "\n Habitat: "+passaro.getHabitat());
+    		LOGGER.info("Registered animal!!"+ "\n ID: " + passaro.getId() + "\n Name: " + passaro.getName() + "\n Species: " + passaro.getSpecies() + "\n Habitat: "+passaro.getHabitat());
     		return animalRepository.save(passaro);
     	}catch (Exception e) {
     		LOGGER.error("Erro: BadGatewayException, Database not connected");
