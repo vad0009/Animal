@@ -9,11 +9,11 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @SpringBootApplication
 @EnableCaching
 @EnableMongoRepositories("br.com.walmart.animals.repository")
-@ComponentScan({"br.com.walmart.animals.service"})
+@ComponentScan({ "br.com.walmart.animals.service" })
 public class Application {
 
-  public static void main(String[] args) {	
-     SpringApplication.run(Application.class, args);
-     
-} 
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+
+	}
 }

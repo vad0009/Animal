@@ -7,7 +7,6 @@ import br.com.walmart.animals.model.Animal;
 
 @RepositoryRestResource(collectionResourceRel = "ZooDB", path = "ZooDB")
 
-public interface AnimalRepository extends MongoRepository<Animal, String>{
-
+public interface AnimalRepository extends MongoRepository<Animal, String> {
 
 }
