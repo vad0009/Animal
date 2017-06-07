@@ -23,5 +23,4 @@ target/
 
 ##Cache##
 dump.rdb
-
 # End of https://www.gitignore.io/api/java,maven
