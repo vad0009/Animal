@@ -10,13 +10,12 @@ import org.springframework.data.annotation.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+public class Animal implements Serializable {
 
-public class Animal implements Serializable {	
-	
 	/**
 	 * 
 	 */
-	
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@NotEmpty(message = "Enter the Animal ID")
@@ -25,26 +24,25 @@ public class Animal implements Serializable {
 	@NotNull
 	@NotEmpty(message = "Enter the animal's name in JSON")
 	private String name;
-	@NotNull (message = "This field is not NULL")
-	@NotEmpty (message = "Inform the animal's habitat in JSON")
+	@NotNull(message = "This field is not NULL")
+	@NotEmpty(message = "Inform the animal's habitat in JSON")
 	private String habitat;
-	
-	public Animal(){
+
+	public Animal() {
 		this.id = UUID.randomUUID().toString();
 	}
-	
-	public Animal(String id, String name, String habitat){
+
+	public Animal(String id, String name, String habitat) {
 		this.id = id;
 		this.name = name;
 		this.habitat = habitat;
 	}
-	public Animal( String name, String habitat){
+
+	public Animal(String name, String habitat) {
 		this.name = name;
 		this.habitat = habitat;
 	}
 
-	
-	
 	public String getId() {
 		return id;
 	}
@@ -60,9 +58,11 @@ public class Animal implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getHabitat() {
 		return habitat;
 	}
+
 	public void setHabitat(String habitat) {
 		this.habitat = habitat;
 	}
