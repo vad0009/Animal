@@ -1,5 +1,7 @@
 package br.com.walmart.animals.config;
 
+import java.io.IOException;
+
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -16,12 +18,12 @@ public class RedisConfig extends CachingConfigurerSupport {
 
 	// Conectando com o servidor do redis
 	@Bean
-	public JedisConnectionFactory redisConnectionFactory() {
+	public JedisConnectionFactory redisConnectionFactory() throws IOException {
 		JedisConnectionFactory redisConnectionFactory = new JedisConnectionFactory();
 
 		// Defaults
-		redisConnectionFactory.setHostName("127.0.0.1");
-		redisConnectionFactory.setPort(6379);
+		redisConnectionFactory.setHostName("redis.server.hostName");
+		redisConnectionFactory.setPort("redis.server.port".charAt(0));
 		return redisConnectionFactory;
 	}
 
@@ -39,7 +41,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 
 		// Numeros de segundos antes de expirar. Por defaults o numero de
 		// segundos é (0), ou seja ilimitado.
-		cacheManager.setDefaultExpiration(300);
+		cacheManager.setDefaultExpiration("redis.server.defaultExpiration".charAt(0));
 		return cacheManager;
 	}
 
