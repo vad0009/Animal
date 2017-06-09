@@ -8,8 +8,6 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class Animal implements Serializable {
 
 	/**
@@ -18,8 +16,6 @@ public class Animal implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@NotEmpty(message = "Enter the Animal ID")
-	@JsonIgnore
 	private String id;
 	@NotNull
 	@NotEmpty(message = "Enter the animal's name in JSON")
