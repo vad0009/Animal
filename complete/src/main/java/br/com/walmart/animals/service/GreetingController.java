@@ -30,7 +30,6 @@ import br.com.walmart.animals.repository.AnimalRepository;
 public class GreetingController {
 	final static Logger LOGGER = Logger.getLogger(GreetingController.class);
 
-<<<<<<< HEAD
 	@Autowired
 	public AnimalRepository animalRepository;
 
@@ -77,53 +76,10 @@ public class GreetingController {
 		LOGGER.info("Updating animals in the database");
 		try {
 			Animal passaroEncontrado = animalRepository.findOne(id);
-=======
-    @Autowired
-    public AnimalRepository animalRepository;
-    
-    
-   
-    @RequestMapping(value = "/animal_get/{id}" ,method = RequestMethod.GET)
-    @ResponseBody
-    @Cacheable(value="Passaro")
-    public Animal getAnimal(@PathVariable(value = "id",required = true) String id){     
-    	
-    	
-    	Animal animal = animalRepository.findOne(id);
-    	if(animal == null){
-    		LOGGER.error("Erro: 404 - NotFoundException, Please enter a valid ID");
-    		throw new ResourceNotFoundException(id);
-    	}
-    		LOGGER.info("Animal Found --> " + animal.getName());
-    		return animal;
-    		
-    }
-    
-    @RequestMapping(value ="/animal_post/",method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Animal postAnimal(@Valid @RequestBody Passaro passaro) throws URISyntaxException {
-    	
-    	try {
-    		LOGGER.info("Registered animal!!"+ "\n ID: " + passaro.getId() + "\n Name: " + passaro.getName() + "\n Species: " + passaro.getSpecies() + "\n Habitat: "+passaro.getHabitat());
-    		return animalRepository.save(passaro);
-    	}catch (Exception e) {
-    		LOGGER.error("Erro: 503 - BadGatewayException, Database not connected");
-    		throw new ResourceBadGatewayException();
-    	}
-    }
-    
-    
-    @RequestMapping(value = "/animal_put/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    @CachePut(value="Passaro", key="#id")
-    public Animal putAnimal(@PathVariable(value = "id")String id, @Valid @RequestBody Passaro passaro){
-    	
-    	try{
-    		Animal passaroEncontrado = animalRepository.findOne(id);
->>>>>>> parent of 49b9ba5... Update Project
+
 			passaroEncontrado.setHabitat(passaro.getHabitat());
 			passaroEncontrado.setName(passaro.getName());
 			return animalRepository.save(passaroEncontrado);
-<<<<<<< HEAD
 		} catch (NullPointerException ex) {
 			LOGGER.error("Erro: 404 - NotFoundException, Please enter a valid ID");
 			throw new ResourceNotFoundException();
@@ -136,28 +92,6 @@ public class GreetingController {
 		}
 
 	}
-
-	@RequestMapping(value = "/animal_del/{id}", method = RequestMethod.DELETE)
-	@ResponseBody
-	@CacheEvict(value = "Passaro", key = "#id")
-	public Animal deleteAnimal(@PathVariable(value = "id", required = true) String id) {
-
-		LOGGER.info("Deleted animal!");
-		animalRepository.delete(id);
-		return null;
-	}
-
-=======
-    	}catch(NullPointerException ex){
-    		LOGGER.error("Erro: 404 - NotFoundException, Please enter a valid ID");
-    		throw new ResourceNotFoundException();
-    	}catch(DataAccessException ex){
-    		LOGGER.error("Erro: 503 - BadGatewayException, Database not connected");
-    		throw new ResourceBadGatewayException();
-    	}
-    	
-}
-    
     
     @RequestMapping(value = "/animal_del/{id}", method = RequestMethod.DELETE)
     @ResponseBody
@@ -174,6 +108,4 @@ public class GreetingController {
     		return null;
     	}
     }  
-    
->>>>>>> parent of 49b9ba5... Update Project
 }

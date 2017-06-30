@@ -8,18 +8,11 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 
-<<<<<<< HEAD
-public class Animal implements Serializable {
-=======
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
->>>>>>> parent of 49b9ba5... Update Project
+
 
 public class Animal implements Serializable {	
 	
-	/**
-	 * 
-	 */
 	
 	private static final long serialVersionUID = 1L;
 	@Id
