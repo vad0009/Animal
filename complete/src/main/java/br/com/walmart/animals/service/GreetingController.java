@@ -1,4 +1,5 @@
 package br.com.walmart.animals.service;
+
 import java.net.URISyntaxException;
 
 import javax.validation.Valid;
@@ -24,12 +25,10 @@ import br.com.walmart.animals.model.Animal;
 import br.com.walmart.animals.model.Passaro;
 import br.com.walmart.animals.repository.AnimalRepository;
 
-
-
 @Controller
 public class GreetingController {
 	final static Logger LOGGER = Logger.getLogger(GreetingController.class);
-
+	
 	@Autowired
 	public AnimalRepository animalRepository;
 
@@ -44,16 +43,11 @@ public class GreetingController {
 			throw new ResourceNotFoundException(id);
 		}
 		LOGGER.info("Animal Found --> " + animal.getName());
+		
+		
 		return animal;
 
 	}
-	
-	/*@RequestMapping(value = "/animal_get/{id}/{name}", method = RequestMethod.GET)
-	@ResponseBody
-	@Cacheable(value = "passaro")
-	public Animal getAnimalByIdAndName(){
-		
-	}*/
 
 	@RequestMapping(value = "/animal_post/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Animal postAnimal(@Valid @RequestBody Passaro passaro) throws URISyntaxException {
@@ -92,20 +86,21 @@ public class GreetingController {
 		}
 
 	}
-    
-    @RequestMapping(value = "/animal_del/{id}", method = RequestMethod.DELETE)
-    @ResponseBody
-    @CacheEvict(value = "Passaro", key = "#id")
-    public Animal deleteAnimal(@PathVariable(value = "id",required = true)String id){
-    	
-    	Animal animal = animalRepository.findOne(id);
-    	if(animal ==null){
-    		LOGGER.error("Erro: 404 - NotFoundException, Please enter a valid ID");
-    		throw new ResourceNotFoundException();
-    	}else{
-    		LOGGER.info("Deleted animal!");
-    		animalRepository.delete(id);
-    		return null;
-    	}
-    }  
+
+	@RequestMapping(value = "/animal_del/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	@CacheEvict(value = "Passaro", key = "#id")
+	public Animal deleteAnimal(@PathVariable(value = "id", required = true) String id) {
+
+		Animal animal = animalRepository.findOne(id);
+		if (animal == null) {
+			LOGGER.error("Erro: 404 - NotFoundException, Please enter a valid ID");
+			throw new ResourceNotFoundException();
+		} else {
+			LOGGER.info("Deleted animal!");
+			animalRepository.delete(id);
+			return null;
+		}
+	}
+
 }
