@@ -12,6 +12,7 @@ import br.com.walmart.animals.rabbit.Receiver;
 @Configuration
 @EnableRabbit
 public class RabbitConfig {
+	
 	public final static String queueName = "animals.boot.queue";
 
 	@Bean

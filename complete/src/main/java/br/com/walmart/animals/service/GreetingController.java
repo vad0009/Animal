@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.walmart.animals.config.RabbitConfig;
 import br.com.walmart.animals.exceptions.ResourceBadGatewayException;
 import br.com.walmart.animals.exceptions.ResourceInternalServerErrorException;
 import br.com.walmart.animals.exceptions.ResourceNotFoundException;
@@ -28,7 +30,7 @@ import br.com.walmart.animals.repository.AnimalRepository;
 @Controller
 public class GreetingController {
 	final static Logger LOGGER = Logger.getLogger(GreetingController.class);
-	
+	private RabbitTemplate rabbitTemplate;
 	@Autowired
 	public AnimalRepository animalRepository;
 
@@ -43,8 +45,8 @@ public class GreetingController {
 			throw new ResourceNotFoundException(id);
 		}
 		LOGGER.info("Animal Found --> " + animal.getName());
-		
-		
+
+		rabbitTemplate.convertAndSend(RabbitConfig.queueName, animal.getName());
 		return animal;
 
 	}
@@ -53,6 +55,7 @@ public class GreetingController {
 	public Animal postAnimal(@Valid @RequestBody Passaro passaro) throws URISyntaxException {
 		LOGGER.info("Registering animals in the database");
 		try {
+			rabbitTemplate.convertAndSend(RabbitConfig.queueName, passaro.getName());
 			return animalRepository.save(passaro);
 		} catch (DataAccessException e) {
 			LOGGER.error("Erro: 503 - BadGatewayException, Database not connected");
@@ -102,5 +105,11 @@ public class GreetingController {
 			return null;
 		}
 	}
+
+	@Autowired
+	public void setTemplate(RabbitTemplate rabbitTemplate) {
+		this.rabbitTemplate = rabbitTemplate;
+	}
+
 
 }
