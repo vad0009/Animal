@@ -8,7 +8,7 @@ import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import br.com.walmart.animals.rabbit.Receiver;
+import br.com.walmart.animals.rabbit.AnimalsListener;
 @Configuration
 @EnableRabbit
 public class RabbitConfig {
@@ -41,7 +41,7 @@ public class RabbitConfig {
 	@Bean
 	// Permite que os métodos de ouvinte operem em tipos de conteúdo de
 	// mensagens, completamente independentes da API Rabbit.
-	MessageListenerAdapter listenerAdapter(Receiver receiver) {
+	MessageListenerAdapter listenerAdapter(AnimalsListener receiver) {
 
 		// Cria um novo MessageListenerAdapter para um determinado dado,
 		// enquanto também declara seu método POJO.

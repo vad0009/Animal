@@ -60,4 +60,11 @@ public class Animal implements Serializable {
 	public void setHabitat(String habitat) {
 		this.habitat = habitat;
 	}
+
+	@Override
+	public String toString() {
+		return "Animal [id=" + id + ", name=" + name + ", habitat=" + habitat + "]";
+	}
+	
+	
 }

@@ -1,7 +1,6 @@
 package br.com.walmart.animals.service;
 
-import java.net.URISyntaxException;
-
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -46,26 +45,25 @@ public class GreetingController {
 		}
 		LOGGER.info("Animal Found --> " + animal.getName());
 
-		rabbitTemplate.convertAndSend(RabbitConfig.queueName, animal.getName());
 		return animal;
 
 	}
 
 	@RequestMapping(value = "/animal_post/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Animal postAnimal(@Valid @RequestBody Passaro passaro) throws URISyntaxException {
-		LOGGER.info("Registering animals in the database");
+	public void postAnimal(@Valid @RequestBody Passaro passaro, HttpServletResponse response){
+		LOGGER.info("Sending animals from Queue");
 		try {
-			rabbitTemplate.convertAndSend(RabbitConfig.queueName, passaro.getName());
-			return animalRepository.save(passaro);
-		} catch (DataAccessException e) {
-			LOGGER.error("Erro: 503 - BadGatewayException, Database not connected");
-			throw new ResourceBadGatewayException();
+			rabbitTemplate.convertAndSend(RabbitConfig.queueName,passaro);
+			response.setStatus(202);
+			//devolver 202
 		} catch (Exception e) {
 			LOGGER.error("Erro: 500 - InternalServerErrorException, An unexpected condition was encountered");
 			throw new ResourceInternalServerErrorException();
 		}
 	}
 
+	//Listener - Pegar da fila o Animal e salvar no banco! responses e request
+	
 	@RequestMapping(value = "/animal_put/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@CachePut(value = "Passaro", key = "#id")
@@ -89,7 +87,7 @@ public class GreetingController {
 		}
 
 	}
-
+	
 	@RequestMapping(value = "/animal_del/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	@CacheEvict(value = "Passaro", key = "#id")

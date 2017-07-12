@@ -1,6 +1,6 @@
 package br.com.walmart.animals.model;
 
-public class Passaro extends Animal {
+public class Passaro extends Animal{
 	
 	private String species = "Passaro";
 	
