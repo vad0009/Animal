@@ -59,8 +59,7 @@
 			<artifactId>json-path</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-
+		
 		<!-- Redis -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
