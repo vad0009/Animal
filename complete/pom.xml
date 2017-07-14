@@ -18,16 +18,19 @@
 		<java.version>1.8</java.version>
 		<jdk.version>1.7</jdk.version>
 		<rabbit.version>1.7.1.RELEASE</rabbit.version>
+		<swagger.version>1.5.15</swagger.version>
 	</properties>
 
 	<dependencies>
+
+
 		<!-- Log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
-		
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -60,15 +63,15 @@
 
 		<!-- Redis -->
 		<dependency>
-    		<groupId>org.springframework.data</groupId>
-    		<artifactId>spring-data-redis</artifactId>
-    		<version>1.8.1.RELEASE</version><!--$NO-MVN-MAN-VER$-->
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>1.8.1.RELEASE</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 
 		<dependency>
-    		<groupId>redis.clients</groupId>
-    		<artifactId>jedis</artifactId>
-    		<version>2.9.0</version><!--$NO-MVN-MAN-VER$-->
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.9.0</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 
 		<!-- Spring AMQP RabbitMQ -->
@@ -88,6 +91,15 @@
 			<artifactId>http-client</artifactId>
 			<version>1.2.0.RELEASE</version>
 		</dependency>
+
+		<!-- Swegger -->
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.5.15</version>
+		</dependency>
+
+	
 	</dependencies>
 
 	<build>
