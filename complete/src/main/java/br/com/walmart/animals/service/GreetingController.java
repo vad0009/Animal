@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.walmart.animals.config.RabbitConfig;
 import br.com.walmart.animals.exceptions.ResourceBadGatewayException;
@@ -25,15 +26,19 @@ import br.com.walmart.animals.exceptions.ResourceNotFoundException;
 import br.com.walmart.animals.model.Animal;
 import br.com.walmart.animals.model.Passaro;
 import br.com.walmart.animals.repository.AnimalRepository;
+import io.swagger.annotations.Api;
 
 @Controller
+@RestController
+@RequestMapping("/animal")
+@Api(value = "animals", description = "Animals")
 public class GreetingController {
 	final static Logger LOGGER = Logger.getLogger(GreetingController.class);
 	private RabbitTemplate rabbitTemplate;
 	@Autowired
 	public AnimalRepository animalRepository;
 
-	@RequestMapping(value = "/animal_get/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	@Cacheable(value = "passaro")
 	public Animal getAnimal(@PathVariable(value = "id", required = true) String id) {
@@ -49,7 +54,7 @@ public class GreetingController {
 
 	}
 
-	@RequestMapping(value = "/animal_post/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/post/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void postAnimal(@Valid @RequestBody Passaro passaro, HttpServletResponse response) {
 		LOGGER.info("Sending animals from Queue");
 		try {
@@ -63,7 +68,7 @@ public class GreetingController {
 	}
 
 
-	@RequestMapping(value = "/animal_put/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/put/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@CachePut(value = "Passaro", key = "#id")
 	public Animal putAnimal(@PathVariable(value = "id") String id, @Valid @RequestBody Passaro passaro) {
@@ -87,7 +92,7 @@ public class GreetingController {
 
 	}
 
-	@RequestMapping(value = "/animal_del/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	@CacheEvict(value = "Passaro", key = "#id")
 	public Animal deleteAnimal(@PathVariable(value = "id", required = true) String id) {
