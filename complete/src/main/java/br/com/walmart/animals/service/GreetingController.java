@@ -30,7 +30,7 @@ import io.swagger.annotations.Api;
 
 @Controller
 @RestController
-@RequestMapping("/animal")
+@RequestMapping(value = "/animals")
 @Api(value = "animals", description = "Animals")
 public class GreetingController {
 	final static Logger LOGGER = Logger.getLogger(GreetingController.class);
