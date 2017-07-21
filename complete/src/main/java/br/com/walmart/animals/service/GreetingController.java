@@ -30,8 +30,8 @@ import io.swagger.annotations.Api;
 
 @Controller
 @RestController
-@RequestMapping(value = "/animals")
-@Api(value = "animals", description = "Animals")
+@RequestMapping(value = "/live")
+@Api(value = "animals")
 public class GreetingController {
 	final static Logger LOGGER = Logger.getLogger(GreetingController.class);
 	private RabbitTemplate rabbitTemplate;
@@ -66,7 +66,6 @@ public class GreetingController {
 			throw new ResourceInternalServerErrorException();
 		}
 	}
-
 
 	@RequestMapping(value = "/put/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
